@@ -49,7 +49,7 @@ public class Controller {
         return dictionary.get(rand.nextInt(dictionary.size()));
     }
 
-    protected void renewDictionary(Pair<Character, Integer>revealedLetter) {
+    protected void renewDictionary(Pair<Character, Integer> revealedLetter) {
         List<String> wordsToRemove = new ArrayList<String>();
         for (String word: dictionary){
             char revealedChar = revealedLetter.getKey();
@@ -65,5 +65,34 @@ public class Controller {
         }
         dictionary.removeAll(wordsToRemove);
         System.out.println(dictionary);
+    }
+
+    protected List<Pair<Character, Integer>> calculatePropabilities(List<Character> revealedLetters) {
+        List<Pair<Character, Integer>> probabilities = new ArrayList<Pair<Character, Integer>>();
+        for(int i = 0; i < 26; i++){
+            char character = (char)(65 + i);
+            int probability = 0;
+            boolean isRevealed = false;
+            int wordsContainingChar = 0;
+            for (Character letter : revealedLetters) {
+                if (letter == character) {
+                    isRevealed = true;
+                    break;
+                }
+            }
+            if (!isRevealed) {
+                for(String word: dictionary) {
+                    if (word.indexOf(character) != -1) {
+                        wordsContainingChar++;
+                    }
+                }
+                probability = (int)((double)(wordsContainingChar)/(double)(dictionary.size()) * 100);
+            }
+            else {
+                probability = -1;
+            }
+            probabilities.add(i,new Pair<Character, Integer>(character, probability));
+        }
+        return probabilities;
     }
 }
