@@ -41,7 +41,6 @@ public class DictionaryCreator {
                 validateDictionary(dictionary, id);
             }
         }
-        
     }
 
     private String fetchJSON(String id) {   
