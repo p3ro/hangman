@@ -1,3 +1,5 @@
+package app;
+
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
@@ -7,13 +9,13 @@ import java.util.Scanner;
 
 import javafx.util.Pair;
 
-public class Controller {
+public class HangmanController {
     
     private List<String> dictionary = new ArrayList<String>();
     private String chosenWord;
 
 
-    public Controller(String id) {
+    public HangmanController(String id) {
         try {
             String filename = new String("./medialab/"+"hangman_"+id+".txt");
             File file = new File(filename);
