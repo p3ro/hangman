@@ -2,20 +2,20 @@
 
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.HBox?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.HangmanController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.Controller">
    <children>
-      <ImageView fx:id="hangmanImageView" fitHeight="200.0" fitWidth="250.0" layoutX="275.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
-      <TextField fx:id="hangmanTextField" alignment="CENTER" layoutX="326.0" layoutY="288.0" />
-      <HBox layoutX="30.0" layoutY="340.0" prefHeight="40.0" prefWidth="720.0" spacing="30.0">
+      <ImageView fx:id="hangmanImageView" disable="true" fitHeight="200.0" fitWidth="250.0" layoutX="275.0" layoutY="45.0" pickOnBounds="true" preserveRatio="true" />
+      <HBox fx:id="hBox1" disable="true" layoutX="30.0" layoutY="340.0" prefHeight="40.0" prefWidth="720.0" spacing="30.0">
          <children>
             <Button fx:id="QButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="Q" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="qTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -23,7 +23,7 @@
             </Button>
             <Button fx:id="WButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="W" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="wTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -31,7 +31,7 @@
             </Button>
             <Button fx:id="EButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="E" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="eTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -39,7 +39,7 @@
             </Button>
             <Button fx:id="RButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="R" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="rTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -50,12 +50,12 @@
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
                </padding>
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="tTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
             </Button>
             <Button fx:id="YButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="Y" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="yTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -63,7 +63,7 @@
             </Button>
             <Button fx:id="UButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="U" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="uTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -71,7 +71,7 @@
             </Button>
             <Button fx:id="IButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="I" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="iTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -79,7 +79,7 @@
             </Button>
             <Button fx:id="OButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="O" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="oTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -87,7 +87,7 @@
             </Button>
             <Button fx:id="PButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="P" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="pTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -95,11 +95,11 @@
             </Button>
          </children>
       </HBox>
-      <HBox layoutX="40.0" layoutY="430.0" prefHeight="40.0" prefWidth="720.0" spacing="30.0">
+      <HBox fx:id="hBox2" disable="true" layoutX="40.0" layoutY="430.0" prefHeight="40.0" prefWidth="720.0" spacing="30.0">
          <children>
             <Button fx:id="AButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="A" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="aTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -110,7 +110,7 @@
             </Button>
             <Button fx:id="SButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="S" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="sTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -121,7 +121,7 @@
             </Button>
             <Button fx:id="DButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="D" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="dTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -132,7 +132,7 @@
             </Button>
             <Button fx:id="FButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="F" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="fTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -143,7 +143,7 @@
             </Button>
             <Button fx:id="GButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="G" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="gTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -154,7 +154,7 @@
             </Button>
             <Button fx:id="HButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="H" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="hTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -165,7 +165,7 @@
             </Button>
             <Button fx:id="JButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="J" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="jTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -176,7 +176,7 @@
             </Button>
             <Button fx:id="KButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="K" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="kTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -187,7 +187,7 @@
             </Button>
             <Button fx:id="LButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="L" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="lTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -201,11 +201,11 @@
             <Insets left="15.0" right="20.0" />
          </padding>
       </HBox>
-      <HBox layoutX="40.0" layoutY="520.0" prefHeight="40.0" prefWidth="720.0" spacing="30.0">
+      <HBox fx:id="hBox3" disable="true" layoutX="40.0" layoutY="520.0" prefHeight="40.0" prefWidth="720.0" spacing="30.0">
          <children>
             <Button fx:id="ZButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="Z" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="zTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -213,7 +213,7 @@
             </Button>
             <Button fx:id="XButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="X" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" fx:id="xTextField" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -221,7 +221,7 @@
             </Button>
             <Button fx:id="CButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="C" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="cTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -229,7 +229,7 @@
             </Button>
             <Button fx:id="VButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="V" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="vTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -237,7 +237,7 @@
             </Button>
             <Button fx:id="BButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="B" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="bTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -245,7 +245,7 @@
             </Button>
             <Button fx:id="NButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="N" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="nTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -253,7 +253,7 @@
             </Button>
             <Button fx:id="MButton" alignment="BOTTOM_CENTER" contentDisplay="BOTTOM" mnemonicParsing="false" text="M" textAlignment="CENTER" wrapText="true">
                <graphic>
-                  <TextField alignment="BOTTOM_CENTER" prefHeight="25.0" prefWidth="41.0" />
+                  <TextField fx:id="mTextField" alignment="BOTTOM_CENTER" editable="false" focusTraversable="false" prefHeight="25.0" prefWidth="41.0" />
                </graphic>
                <padding>
                   <Insets bottom="2.0" left="2.0" right="2.0" top="2.0" />
@@ -264,5 +264,13 @@
             <Insets left="40.0" />
          </padding>
       </HBox>
+      <Button fx:id="menuButton" disable="true" layoutX="737.0" layoutY="9.0" mnemonicParsing="false" onAction="#changeToMenuScene" text="Menu" textAlignment="CENTER" />
+      <Label fx:id="livesLabel" alignment="CENTER" disable="true" ellipsisString="" layoutX="14.0" layoutY="9.0" prefHeight="25.0" prefWidth="55.0" text="Lives: 6" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="wordLabel" alignment="CENTER" disable="true" ellipsisString="" layoutX="290.0" layoutY="290.0" prefHeight="17.0" prefWidth="200.0" textAlignment="CENTER" wrapText="true" />
+      <TextField fx:id="idTextField" layoutX="326.0" layoutY="378.0" promptText="Give a dictionary ID" />
+      <Button fx:id="playButton" layoutX="372.0" layoutY="418.0" mnemonicParsing="false" onAction="#startGame" prefHeight="25.0" prefWidth="56.0" text="PLAY" />
+      <Button fx:id="dictionaryButton" layoutX="336.0" layoutY="468.0" mnemonicParsing="false" onAction="#createDictionary" text="CREATE DICTIONARY" />
+      <Label fx:id="titleLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="359.0" layoutY="99.0" prefHeight="17.0" prefWidth="83.0" text="HANGMAN" textAlignment="CENTER" wrapText="true" />
+      <Label fx:id="messageLabel" alignment="CENTER" ellipsisString="" layoutX="261.0" layoutY="523.0" prefHeight="63.0" prefWidth="278.0" textAlignment="CENTER" wrapText="true" />
    </children>
 </AnchorPane>
