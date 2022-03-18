@@ -1,0 +1,225 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+  Copyright (c) 2015, 2019, Gluon and/or its affiliates.
+  All rights reserved. Use is subject to license terms.
+
+  This file is available and licensed under the following license:
+
+  Redistribution and use in source and binary forms, with or without
+  modification, are permitted provided that the following conditions
+  are met:
+
+  - Redistributions of source code must retain the above copyright
+    notice, this list of conditions and the following disclaimer.
+  - Redistributions in binary form must reproduce the above copyright
+    notice, this list of conditions and the following disclaimer in
+    the documentation and/or other materials provided with the distribution.
+  - Neither the name of Oracle Corporation nor the names of its
+    contributors may be used to endorse or promote products derived
+    from this software without specific prior written permission.
+
+  THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS
+  "AS IS" AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT
+  LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR
+  A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT
+  OWNER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL,
+  SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT
+  LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE,
+  DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY
+  THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT
+  (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE
+  OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.
+-->
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.Separator?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox fx:id="v" prefHeight="671.0" prefWidth="1200.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="app.MediaLabHangmanController">
+  <children>
+    <MenuBar prefWidth="1254.0" VBox.vgrow="NEVER">
+      <menus>
+        <Menu mnemonicParsing="false" text="Application">
+          <items>
+            <MenuItem fx:id="startMenu" disable="true" mnemonicParsing="false" onAction="#restart" text="Start" />
+            <MenuItem fx:id="load" mnemonicParsing="false" onAction="#loadDic" text="Load" />
+            <MenuItem mnemonicParsing="false" onAction="#createDic" text="Create" />
+            <MenuItem mnemonicParsing="false" onAction="#exit" text="Exit" />
+          </items>
+        </Menu>
+        <Menu fx:id="detailsMenu" disable="true" mnemonicParsing="false" text="Details">
+          <items>
+            <MenuItem mnemonicParsing="false" onAction="#dicStats" text="Dictionary" />
+            <MenuItem mnemonicParsing="false" onAction="#roundsStats" text="Rounds" />
+            <MenuItem mnemonicParsing="false" onAction="#solve" text="Solution" />
+          </items>
+        </Menu>
+      </menus>
+    </MenuBar>
+      <AnchorPane prefHeight="650.0" prefWidth="1200.0">
+         <children>
+            <Label fx:id="wordLabel" alignment="CENTER" ellipsisString="" layoutX="125.0" layoutY="391.0" prefHeight="40.0" prefWidth="670.0" textAlignment="CENTER" wrapText="true">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Label>
+            <Label fx:id="wordsInDic" layoutX="14.0" layoutY="14.0" prefWidth="204.0" text="Words in Dictionary:" />
+            <Label fx:id="accuracyLabel" alignment="CENTER_RIGHT" contentDisplay="RIGHT" layoutX="916.0" layoutY="14.0" nodeOrientation="RIGHT_TO_LEFT" prefHeight="17.0" prefWidth="168.0" text="Accuracy:" textAlignment="RIGHT" wrapText="true" />
+            <Label fx:id="scoreLabel" layoutX="586.0" layoutY="14.0" prefHeight="17.0" prefWidth="108.0" text="Score:" />
+            <ImageView fx:id="hangmanImageView" fitHeight="200.0" fitWidth="250.0" layoutX="333.0" layoutY="153.0" pickOnBounds="true" preserveRatio="true" />
+            <Separator layoutX="889.0" orientation="VERTICAL" prefHeight="646.0" prefWidth="32.0" />
+            <Separator layoutY="29.0" prefHeight="17.0" prefWidth="1200.0" />
+            <VBox layoutX="903.0" layoutY="37.0" prefHeight="608.0" prefWidth="297.0" spacing="4.0">
+               <children>
+                  <Label fx:id="QLabel" prefHeight="25.0" prefWidth="126.0" text="Q:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="WLabel" prefHeight="25.0" prefWidth="126.0" text="W:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="ELabel" prefHeight="25.0" prefWidth="126.0" text="E:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="RLabel" prefHeight="25.0" prefWidth="126.0" text="R:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="TLabel" prefHeight="25.0" prefWidth="126.0" text="T:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="YLabel" prefHeight="25.0" prefWidth="126.0" text="Y:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="ULabel" prefHeight="25.0" prefWidth="126.0" text="U:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="ILabel" prefHeight="25.0" prefWidth="126.0" text="I:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="OLabel" prefHeight="25.0" prefWidth="126.0" text="O:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="PLabel" prefHeight="25.0" prefWidth="126.0" text="P:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="ALabel" prefHeight="25.0" prefWidth="126.0" text="A:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="SLabel" prefHeight="25.0" prefWidth="126.0" text="S:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="DLabel" prefHeight="25.0" prefWidth="126.0" text="D:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="FLabel" prefHeight="25.0" prefWidth="126.0" text="F:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="GLabel" prefHeight="25.0" prefWidth="126.0" text="G:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="HLabel" prefHeight="25.0" prefWidth="126.0" text="H:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="JLabel" prefHeight="25.0" prefWidth="126.0" text="J:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="KLabel" prefHeight="25.0" prefWidth="126.0" text="K:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="LLabel" prefHeight="25.0" prefWidth="126.0" text="L:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="ZLabel" prefHeight="25.0" prefWidth="126.0" text="Z:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="XLabel" prefHeight="25.0" prefWidth="126.0" text="X:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="CLabel" prefHeight="25.0" prefWidth="126.0" text="C:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="VLabel" prefHeight="25.0" prefWidth="126.0" text="V:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="BLabel" prefHeight="25.0" prefWidth="126.0" text="B:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="NLabel" prefHeight="25.0" prefWidth="126.0" text="N:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+                  <Label fx:id="MLabel" prefHeight="25.0" prefWidth="126.0" text="M:">
+                     <padding>
+                        <Insets left="15.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </VBox>
+            <Label fx:id="livesLabel" ellipsisString="" layoutX="14.0" layoutY="46.0" prefHeight="25.0" prefWidth="55.0" text="Lives: 6" wrapText="true" />
+            <ChoiceBox fx:id="posChoiceBox" disable="true" layoutX="509.0" layoutY="486.0" onAction="#posChanged" prefWidth="150.0" />
+            <ChoiceBox fx:id="letterChoiceBox" disable="true" layoutX="249.0" layoutY="486.0" prefWidth="150.0" />
+            <Button fx:id="button" disable="true" layoutX="429.0" layoutY="571.0" mnemonicParsing="false" onAction="#makeGuess" text="Confirm" />
+            <Label fx:id="messageLabel" alignment="CENTER" contentDisplay="CENTER" layoutX="38.0" layoutY="616.0" prefHeight="18.0" prefWidth="842.0" />
+            <Button fx:id="playAgainButton" layoutX="421.0" layoutY="46.0" mnemonicParsing="false" onAction="#playAgain" text="Play Again" visible="false" />
+         </children>
+      </AnchorPane>
+  </children>
+</VBox>

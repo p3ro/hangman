@@ -1,3 +1,5 @@
+package app;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileWriter;
@@ -13,34 +15,59 @@ import java.util.Set;
 
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
-import org.json.simple.parser.ParseException;
 
-public class DictionaryCreator {
+
+import javafx.event.ActionEvent;
+import javafx.fxml.FXML;
+import javafx.scene.control.Button;
+import javafx.scene.control.Label;
+import javafx.scene.control.TextField;
+import javafx.stage.Stage;
+
+public class createPopUpController {
+
+    @FXML
+    private Button createDictionaryButton;
+
+    @FXML
+    private Label errorLabel;
+
+    @FXML
+    private TextField idTextField;
+
+    @FXML
+    private TextField dIdTextField;
+
     private final String REST_URL = "http://www.openlibrary.org/works/";
-    class UndersizeException extends Exception {
-        public UndersizeException()  {
-            System.out.println("The dictionary doesn't have enough words.");
+
+    private MediaLabHangmanController mediaLabHangmanController;
+
+
+    @FXML
+    public void exit() {
+        Stage stage = (Stage) createDictionaryButton.getScene().getWindow();
+        stage.close();
+    }
+
+    @FXML
+    void createDic(ActionEvent event) throws UndersizeException, UnbalancedException, IOException, InterruptedException {
+        String id = idTextField.getText().strip();
+        String dId = dIdTextField.getText().strip();
+        if (id.isEmpty()) {
+            errorLabel.setText("No open library id given.");
+            return;
         }
-    }
-
-    class UnbalancedException extends Exception {
-        public UnbalancedException() {
-            System.out.println("The dictionary doesn't have enough words with at least 9 letters.");
+        if (dId.isEmpty()) {
+            errorLabel.setText("No dictionary id given.");
         }
-    }
-
-    private String formatURL(String id) {
-        return REST_URL+id+".json";
-    }
-
-    public void createDictionary(String id) throws DictionaryCreator.UndersizeException, DictionaryCreator.UnbalancedException, IOException {
         String response = fetchJSON(id);
         if (response != null) {
             Set<String> dictionary = initializeDictionary(response);
             if (dictionary != null) {
-                validateDictionary(dictionary, id);
+                validateDictionary(dictionary, dId);
             }
         }
+        return;
     }
 
     private String fetchJSON(String id) {   
@@ -49,10 +76,10 @@ public class DictionaryCreator {
             HttpURLConnection con = (HttpURLConnection) searchURL.openConnection();
             int responseCode = con.getResponseCode();
             if (responseCode != 200) {
-                System.out.println("Something went wrong!");
+                errorLabel.setText("No Internet Connection. / ID doesn't exist.");
+                return null;
             }
-            BufferedReader in = new BufferedReader(
-                    new InputStreamReader(con.getInputStream()));
+            BufferedReader in = new BufferedReader(new InputStreamReader(con.getInputStream()));
             String inputLine;
             StringBuffer response = new StringBuffer();
             while ((inputLine = in.readLine()) != null) {
@@ -66,6 +93,10 @@ public class DictionaryCreator {
         }
     }
 
+    private String formatURL(String id) {
+        return REST_URL+id+".json";
+    }
+
     private Set<String> initializeDictionary(String response) {
         JSONParser parser = new JSONParser();
         try {
@@ -76,13 +107,14 @@ public class DictionaryCreator {
             Set<String> dictionary = new HashSet<String>(Arrays.asList(description.replaceAll("[^\\p{L}\\p{Z}]"," ").split("\\s+")));
             System.out.println(dictionary);
             return dictionary;
-        } catch (ParseException e) {
+        } catch (org.json.simple.parser.ParseException e) {
+            errorLabel.setText("Can't create a dictionary from the given ID");
             System.out.println(e.toString());
             return null;
         }
     }
 
-    private void validateDictionary(Set<String> dictionary, String id) throws UndersizeException, DictionaryCreator.UnbalancedException, IOException {
+    private void validateDictionary(Set<String> dictionary, String id) throws UndersizeException, UnbalancedException, IOException, InterruptedException {
         int words = 0;
         int bigwords = 0;
         List<String> wordsToRemove = new ArrayList<String>();
@@ -105,7 +137,7 @@ public class DictionaryCreator {
         }
         else {
             try {
-                String filename = new String("./medialab/"+"hangman_"+id+".txt");
+                String filename = new String("medialab/"+"hangman_"+id+".txt");
                 File file = new File(filename);
                 if (file.createNewFile()) {
                     FileWriter writer = new FileWriter(filename);
@@ -113,17 +145,39 @@ public class DictionaryCreator {
                         writer.write(word.toUpperCase()+"\n");
                     }
                     writer.close();
-                    System.out.println("File with id: " + id + " created.");
+                    mediaLabHangmanController.setMessageLabel("Dictionary with id " + id + " created.");
+                    Stage stage = (Stage) createDictionaryButton.getScene().getWindow();
+                    stage.close();
                     return;
                 }
                 else {
-                    System.out.println("File with id: " + id + " already exists.");
+                    errorLabel.setText("Dictionary with id: " + id + " already exists.");
+    
                     return;
                 }
             } catch (IOException e) {
-                System.out.println("Something went wrong while creating the dictionary file");
+                errorLabel.setText("Something went wrong while creating the dictionary file");
+
                 e.printStackTrace();
             }
         }
     }
+
+    class UndersizeException extends Exception {
+        public UndersizeException() throws InterruptedException  {
+            errorLabel.setText("The dictionary doesn't have enough words.");
+            return;
+        }
+    }
+
+    class UnbalancedException extends Exception {
+        public UnbalancedException() throws InterruptedException {
+            errorLabel.setText("The dictionary doesn't have enough words with at least 9 letters.");
+            return;
+        }
+    }
+
+    public void setMediaLabHangmmanController(MediaLabHangmanController mediaLabHangmanController) {
+        this.mediaLabHangmanController = mediaLabHangmanController;
+     }
 }
