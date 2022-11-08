@@ -1,12 +1,17 @@
 This project is part of ECE NTUA's Multimedia Technology Course 2021-2022 and it works as an introduction to building apps with JavaFX and SceneBuilder
 
+The app is made using: <br />
+Java version 17.0.2 <br />
+JavaFX-18 <br />
+json-simple-1.1.1
+
 In this project we were tasked to create a simple hangman game where the user could create new dictionaries from the descriptions of books found in openlibrary.org
 
-The dictionaries are created using the openlibrary api found at "http://www.openlibrary.org/works/" and they must follow the rules below to be considered valid:
-We don't insert words more than one time
-The dictionary must contain at least 20 words
-We insert words that have at least 6 letters
-At least 20% of the words in the dictionary must have 9 letters or more
+The dictionaries are created using the openlibrary api found at "http://www.openlibrary.org/works/" and they must follow the rules below to be considered valid: <br />
+*We don't insert words more than one time <br />
+*The dictionary must contain at least 20 words <br />
+*We insert words that have at least 6 letters <br />
+*At least 20% of the words in the dictionary must have 9 letters or more <br />
 
 After the player creates a dictionary and picks it as the active dictionary he can start a game. A word is picked randomly from the chosen dictionary and the game starts. The player has 6 lives and in each round he picks a letter and it's position in the word. The list of letters is sorted by the probability of each letter being at the chosen position. This probability is calculated based on the total of the words from the dictionary that could be the hidden word based on the number of letters of the hidden word, the revealed characters and their positions and the rejected characters. The probabilities can also be found on the right part of the screen.
 
@@ -18,4 +23,3 @@ On the top of the screen the player can see the available words in the current d
 
 Finally through the menu the player can see statistics about the length of words in the current dictionary(Details->Dictionary), information about the 5 last rounds(Details->Rounds) and can forfeit the current game and see the solution (Details->Solve), in which case the game registers as a lost game for the player.
 
-The app is made using Java version 17.0.2, JavaFX-18, json-simple-1.1.1
